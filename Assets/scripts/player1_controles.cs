@@ -35,7 +35,7 @@ public class player1_controles : MonoBehaviour {
 		//	anim.SetFloat ("velocidad", 0f);
 		//}
 
-		if (Input.GetKeyDown (KeyCode.Space)) {
+		if (Input.GetKeyDown (KeyCode.Space) && Tocando_suelo) {
 			anim.SetBool("Jump",true);
 			rb.AddForce (transform.up*salto);
 			Debug.Log ("Salto");
