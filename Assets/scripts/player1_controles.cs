@@ -40,14 +40,13 @@ public class player1_controles : MonoBehaviour {
 			rb.AddForce (transform.up*salto);
 			Debug.Log ("Salto");
 		}
-		if (Input.GetKeyUp (KeyCode.Space)) {
-			anim.SetBool ("Jump", false);
-		}
+	
 	
 	}
 	void OnTriggerStay2D(Collider2D objeto){
 		if (objeto.tag == "suelo") {
 			Tocando_suelo = true;
+			anim.SetBool ("Jump", false);
 		}
 	} 
 	void OnTriggerExit2D(Collider2D objeto){
