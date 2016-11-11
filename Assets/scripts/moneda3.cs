@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class moneda : MonoBehaviour {
+public class moneda3 : MonoBehaviour {
 	private Rigidbody2D rb;
 	GameObject texto_moneda;
 	control_moneda cm;
@@ -13,15 +13,15 @@ public class moneda : MonoBehaviour {
 		texto_moneda = GameObject.Find ("texto_moneda");
 		cm = texto_moneda.GetComponent<control_moneda> ();
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 	void OnCollisionEnter2D(Collision2D col){
 
 		if (col.gameObject.tag == "Player") {
-			cm.suma_monedas (5);
+			cm.suma_monedas (1);
 			Destroy (gameObject);
 		}
 	}
