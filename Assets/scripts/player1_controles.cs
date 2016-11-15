@@ -8,13 +8,17 @@ public class player1_controles : MonoBehaviour {
 	public bool Tocando_suelo = true;
 	private Animator anim;
 	private Rigidbody2D rb;
+	private Game_control_script gcs;
 	// Use this for initialization
+
 	void Start () {
 		anim = GetComponent<Animator> ();
 		rb = GetComponent <Rigidbody2D> ();
+		gcs = GameObject.Find ("game_control").GetComponent<Game_control_script> ();
 	}
 
 	// Update is called once per frame
+
 	void Update () {
 		anim.SetFloat ("velocidad", Mathf.Abs (rb.velocity.x));
 		if (Input.GetKey (KeyCode.LeftArrow)) {
@@ -43,15 +47,25 @@ public class player1_controles : MonoBehaviour {
 	
 	
 	}
+
 	void OnTriggerStay2D(Collider2D objeto){
 		if (objeto.tag == "suelo") {
 			Tocando_suelo = true;
 			anim.SetBool ("Jump", false);
 		}
 	} 
+
 	void OnTriggerExit2D(Collider2D objeto){
 		if (objeto.tag == "suelo") {
 			Tocando_suelo = false;
+		}
+	}
+
+	void OnCollisionEnter2D(Collision2D col){
+		
+		if (col.gameObject.tag == "enemigo") {
+			Debug.Log ("Enemigo Tocado");
+			gcs.respaw ();
 		}
 	}
 }
