@@ -68,4 +68,5 @@ public class player1_controles : MonoBehaviour {
 			gcs.respaw ();
 		}
 	}
+
 }

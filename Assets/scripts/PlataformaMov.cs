@@ -26,4 +26,6 @@ public class PlataformaMov : MonoBehaviour {
 			destino = fin.position;
 		}
 	}
+	
+
 }
