@@ -9,12 +9,13 @@ public class player1_controles : MonoBehaviour {
 	private Animator anim;
 	private Rigidbody2D rb;
 	private Game_control_script gcs;
+	public GameObject ParticulasMuerte;
 	// Use this for initialization
 
 	void Start () {
 		anim = GetComponent<Animator> ();
 		rb = GetComponent <Rigidbody2D> ();
-		gcs = GameObject.Find ("game_control").GetComponent<Game_control_script> ();
+	//	gcs = GameObject.Find ("game_control").GetComponent<Game_control_script> ();
 	}
 
 	// Update is called once per frame
@@ -62,11 +63,12 @@ public class player1_controles : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D col){
-		
 		if (col.gameObject.tag == "enemigo") {
 			Debug.Log ("Enemigo Tocado");
-			gcs.respaw ();
+			//gcs.respaw ();
+			Instantiate(ParticulasMuerte,transform.position,transform.rotation);
 		}
 	}
+
 
 }
