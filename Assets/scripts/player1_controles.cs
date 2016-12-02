@@ -10,12 +10,19 @@ public class player1_controles : MonoBehaviour {
 	private Rigidbody2D rb;
 	private Game_control_script gcs;
 	public GameObject ParticulasMuerte;
+	private AudioSource audio;
+	public AudioClip sonido_salto;
+	public AudioClip sonido_herir;
+	public AudioClip sonido_moneda;
+	private SpriteRenderer look;
 	// Use this for initialization
 
 	void Start () {
 		anim = GetComponent<Animator> ();
 		rb = GetComponent <Rigidbody2D> ();
-	//	gcs = GameObject.Find ("game_control").GetComponent<Game_control_script> ();
+		audio = GetComponent <AudioSource> ();
+		gcs = GameObject.Find ("game_control").GetComponent<Game_control_script> ();
+		look = GetComponent<SpriteRenderer> ();
 	}
 
 	// Update is called once per frame
@@ -44,6 +51,7 @@ public class player1_controles : MonoBehaviour {
 			anim.SetBool("Jump",true);
 			rb.AddForce (transform.up*salto);
 			Debug.Log ("Salto");
+			audio.PlayOneShot (sonido_salto);
 		}
 	
 	
@@ -64,11 +72,24 @@ public class player1_controles : MonoBehaviour {
 
 	void OnCollisionEnter2D(Collision2D col){
 		if (col.gameObject.tag == "enemigo") {
+			Invoke ("muerte",1);
 			Debug.Log ("Enemigo Tocado");
+			audio.PlayOneShot (sonido_herir);
 			//gcs.respaw ();
 			Instantiate(ParticulasMuerte,transform.position,transform.rotation);
+			look.enabled = false;
+		}
+		if (col.gameObject.tag == "moneda") {
+			audio.Play ();
+			Debug.Log("sonido");
 		}
 	}
+	void muerte(){
+		gcs.respaw ();
+		look.enabled = true;
+	}
+
+
 
 
 }

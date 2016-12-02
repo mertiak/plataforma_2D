@@ -8,10 +8,10 @@ public class moneda3 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	//	rb = GetComponent<Rigidbody2D> ();
-	//	rb.AddForce (new Vector2 (Random.Range (-100, 100),100));
+		rb = GetComponent<Rigidbody2D> ();
+		rb.AddForce (new Vector2 (Random.Range (-100, 100),100));
 		texto_moneda = GameObject.Find ("texto_moneda");
-		cm = texto_moneda.GetComponent<control_moneda> ();
+//		cm = texto_moneda.GetComponent<control_moneda> ();
 	}
 
 	// Update is called once per frame
@@ -21,8 +21,8 @@ public class moneda3 : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D col){
 
 		if (col.gameObject.tag == "Player") {
-			cm.suma_monedas (1);
+			//cm.suma_monedas (1);
 			Destroy (gameObject);
-		}
+			}
 	}
 }
